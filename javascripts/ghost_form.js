@@ -5,7 +5,7 @@ $(document).ready(function() {
     $(this).submit(function(){
       $(".ghost").attr("value", "")
     });
-    $(this).find(":text").each(function(){
+    $(this).find(".ghost").each(function(){
       $(this).ghostForm();
     })
   });

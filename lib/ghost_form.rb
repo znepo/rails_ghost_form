@@ -1,15 +1,22 @@
-# GhostForm
-
 class GhostFormBuilder < ActionView::Helpers::FormBuilder
   
   def text_field(field, options = {})
-    options = set_options(options)
+    if @object.send(field).blank?
+      options = set_options(options) 
+    else
+      options.delete(:ghost)
+    end
     super(field, options)
   end
   
   def password_field(field, options = {})
-    options.merge!(:password => true)
-    text_field(field, options)
+    if @object.send(field).blank?
+      options.merge!(:password => true)
+      text_field(field, options)
+    else
+      options.delete(:ghost)
+      super
+    end
   end
   
   protected
@@ -30,6 +37,7 @@ end
 
 module ApplicationHelper
   
+  # Just a simple helper method for you to add ghosts to your stuffs
   def ghosted_form_for(record_or_name_or_array, *args, &proc)
     options = args.extract_options!
     options[:html] = options[:html] || {}
