@@ -1,13 +1,23 @@
 GhostForm
 =========
 
-Introduction goes here.
+A simple plugin to give you a ghosted form using jQuery for the javascript. 
+
+TODO
+=======
+Lots of cleaning up, at the moment it's kinda hacked together to get this job out the door. I'll be back don't worry.
 
 
 Example
 =======
 
-Example goes here.
+-ghosted_form_for resource_name, :url => session_path(resource_name), :html => {:id => "login_form"} do |f|
+  %p.email
+    =f.text_field :email, :ghost => "Email"
+  %p.password
+    =f.password_field :password, :ghost => "Password"
+    
+Will produce a form with ghosted email and password fields. 
 
 
-Copyright (c) 2009 [name of plugin creator], released under the MIT license
+Copyright (c) 2009 [Snepo Research], released under the MIT license
